@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | nlzh</title>
+  <title>vue基础-10-vue动画 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="about | nlzh">
+  <meta name="description" content="vue基础-10-vue动画 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -353,9 +353,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-vue基础-10-vue动画" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">vue基础-10-vue动画</h1>
     
     <div class="article-meta">
         
@@ -365,12 +365,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-04 23:00:49'>2020-03-04 23:00</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-08 14:10:19'>2020-03-06 13:02</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:801</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -389,7 +389,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue中的动画"><span class="toc-text">Vue中的动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用过渡类名"><span class="toc-text">使用过渡类名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用第三方-CSS-动画库"><span class="toc-text">使用第三方 CSS 动画库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用动画钩子函数"><span class="toc-text">使用动画钩子函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-的列表过渡"><span class="toc-text">v-for 的列表过渡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表的排序过渡"><span class="toc-text">列表的排序过渡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -405,7 +405,155 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Vue中的动画"><a href="#Vue中的动画" class="headerlink" title="Vue中的动画"></a><a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">Vue中的动画</a></h2><p>为什么要有动画：动画能够提高用户的体验，帮助用户更好的理解页面中的功能；</p>
+<h3 id="使用过渡类名"><a href="#使用过渡类名" class="headerlink" title="使用过渡类名"></a>使用过渡类名</h3><ol>
+<li><p>HTML结构：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;button&quot; value=&quot;动起来&quot; @click=&quot;myAnimate&quot;&gt;
+         &lt;!-- 使用 transition 将需要过渡的元素包裹起来 --&gt;
+         &lt;transition name=&quot;fade&quot;&gt;
+           &lt;div v-show=&quot;isshow&quot;&gt;动画哦&lt;/div&gt;
+         &lt;/transition&gt;
+       &lt;/div&gt;</code></pre></li>
+<li><p>VM 实例：</p>
+<pre><code>
+     // 创建 Vue 实例，得到 ViewModel
+     var vm = new Vue({
+       el: &#39;#app&#39;,
+       data: {
+         isshow: false
+       },
+       methods: {
+         myAnimate() {
+           this.isshow = !this.isshow;
+         }
+       }
+     });</code></pre></li>
+<li><p>定义两组类样式：</p>
+<pre><code>
+     /* 定义进入和离开时候的过渡状态 */
+         .fade-enter-active,
+         .fade-leave-active {
+           transition: all 0.2s ease;
+           position: absolute;
+         }
+
+         /* 定义进入过渡的开始状态 和 离开过渡的结束状态 */
+         .fade-enter,
+         .fade-leave-to {
+           opacity: 0;
+           transform: translateX(100px);
+         }</code></pre></li>
+</ol>
+<h3 id="使用第三方-CSS-动画库"><a href="#使用第三方-CSS-动画库" class="headerlink" title="使用第三方 CSS 动画库"></a><a href="https://cn.vuejs.org/v2/guide/transitions.html#自定义过渡类名" target="_blank" rel="noopener">使用第三方 CSS 动画库</a></h3><ol>
+<li><p>导入动画类库：</p>
+<pre><code>
+     &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/animate.css&quot;&gt;</code></pre></li>
+<li><p>定义 transition 及属性：</p>
+<pre><code>
+     &lt;transition
+         enter-active-class=&quot;fadeInRight&quot;
+         leave-active-class=&quot;fadeOutRight&quot;
+         :duration=&quot;{ enter: 500, leave: 800 }&quot;&gt;
+           &lt;div class=&quot;animated&quot; v-show=&quot;isshow&quot;&gt;动画哦&lt;/div&gt;
+     &lt;/transition&gt;</code></pre></li>
+</ol>
+<h3 id="使用动画钩子函数"><a href="#使用动画钩子函数" class="headerlink" title="使用动画钩子函数"></a>使用动画钩子函数</h3><ol>
+<li><p>定义 transition 组件以及三个钩子函数：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;button&quot; value=&quot;切换动画&quot; @click=&quot;isshow = !isshow&quot;&gt;
+         &lt;transition
+         @before-enter=&quot;beforeEnter&quot;
+         @enter=&quot;enter&quot;
+         @after-enter=&quot;afterEnter&quot;&gt;
+           &lt;div v-if=&quot;isshow&quot; class=&quot;show&quot;&gt;OK&lt;/div&gt;
+         &lt;/transition&gt;
+       &lt;/div&gt;</code></pre></li>
+<li><p>定义三个 methods 钩子方法：</p>
+<pre><code>
+     methods: {
+             beforeEnter(el) { // 动画进入之前的回调
+               el.style.transform = &#39;translateX(500px)&#39;;
+             },
+             enter(el, done) { // 动画进入完成时候的回调
+               el.offsetWidth;
+               el.style.transform = &#39;translateX(0px)&#39;;
+               done();
+             },
+             afterEnter(el) { // 动画进入完成之后的回调
+               this.isshow = !this.isshow;
+             }
+           }</code></pre></li>
+<li><p>定义动画过渡时长和样式：</p>
+<pre><code>
+     .show{
+       transition: all 0.4s ease;
+     }</code></pre></li>
+</ol>
+<h3 id="v-for-的列表过渡"><a href="#v-for-的列表过渡" class="headerlink" title="v-for 的列表过渡"></a><a href="https://cn.vuejs.org/v2/guide/transitions.html#列表的进入和离开过渡" target="_blank" rel="noopener">v-for 的列表过渡</a></h3><ol>
+<li><p>定义过渡样式：</p>
+<pre><code>
+     &lt;style&gt;
+         .list-enter,
+         .list-leave-to {
+           opacity: 0;
+           transform: translateY(10px);
+         }
+
+         .list-enter-active,
+         .list-leave-active {
+           transition: all 0.3s ease;
+         }
+     &lt;/style&gt;</code></pre></li>
+<li><p>定义DOM结构，其中，需要使用 transition-group 组件把v-for循环的列表包裹起来：</p>
+<pre><code>
+       &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;text&quot; v-model=&quot;txt&quot; @keyup.enter=&quot;add&quot;&gt;
+
+         &lt;transition-group tag=&quot;ul&quot; name=&quot;list&quot;&gt;
+           &lt;li v-for=&quot;(item, i) in list&quot; :key=&quot;i&quot;&gt;{{item}}&lt;/li&gt;
+         &lt;/transition-group&gt;
+       &lt;/div&gt;</code></pre></li>
+<li><p>定义 VM中的结构：</p>
+<pre><code>
+     // 创建 Vue 实例，得到 ViewModel
+     var vm = new Vue({
+       el: &#39;#app&#39;,
+       data: {
+         txt: &#39;&#39;,
+         list: [1, 2, 3, 4]
+       },
+       methods: {
+         add() {
+           this.list.push(this.txt);
+           this.txt = &#39;&#39;;
+         }
+       }
+     });</code></pre></li>
+</ol>
+<h3 id="列表的排序过渡"><a href="#列表的排序过渡" class="headerlink" title="列表的排序过渡"></a>列表的排序过渡</h3><p><code>&lt;transition-group&gt;</code> 组件还有一个特殊之处。不仅可以进入和离开动画，<strong>还可以改变定位</strong>。要使用这个新功能只需了解新增的 <code>v-move</code> 特性，<strong>它会在元素的改变定位的过程中应用</strong>。</p>
+<ul>
+<li><p><code>v-move</code> 和 <code>v-leave-active</code> 结合使用，能够让列表的过渡更加平缓柔和：</p>
+<pre><code>
+      .v-move{
+        transition: all 0.8s ease;
+      }
+      .v-leave-active{
+        position: absolute;
+      }</code></pre></li>
+</ul>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ol>
+<li><a href="https://v1-cn.vuejs.org/" target="_blank" rel="noopener">vue.js 1.x 文档</a></li>
+<li><a href="https://cn.vuejs.org/" target="_blank" rel="noopener">vue.js 2.x 文档</a></li>
+<li><a href="http://www.css88.com/archives/7715" target="_blank" rel="noopener">String.prototype.padStart(maxLength, fillString)</a></li>
+<li><a href="http://www.cnblogs.com/wuhua1/p/6686237.html" target="_blank" rel="noopener">js 里面的键盘事件对应的键码</a></li>
+<li><a href="https://github.com/pagekit/vue-resource" target="_blank" rel="noopener">pagekit/vue-resource</a></li>
+<li><a href="https://jingyan.baidu.com/article/a65957f4976aad24e67f9b9b.html" target="_blank" rel="noopener">navicat如何导入sql文件和导出sql文件</a></li>
+<li><a href="http://cubic-bezier.com/#.4,-0.3,1,.33" target="_blank" rel="noopener">贝塞尔在线生成器</a></li>
+</ol>
+
       
        <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
     </div>

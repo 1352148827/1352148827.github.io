@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vue基础-11-vue路由插件 | nlzh</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="vue基础-11-vue路由插件 | nlzh">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="虞奥飞的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:site_name" content="nlzh">
+<meta property="og:description" content="虞奥飞的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-04T15:00:49.000Z">
+<meta property="article:modified_time" content="2020-03-04T15:00:49.189Z">
+<meta property="article:author" content="虞奥飞">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>虞奥飞</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/1352148827" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:1352148827@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1352148827&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(17)</small></div></li>
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="web">web<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="17">
+<input type="hidden" id="yelog_site_word_count" value="12.9k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="以 in: 开头进行全文搜索" />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="运维 "
+           href="/2020/03/06/hexo%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo使用">hexo使用</span>
+            <span class="post-date" title="2020-03-06 12:48:45">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6-自定义指令">6-自定义指令</span>
+            <span class="post-date" title="2020-03-06 14:26:41">2020/03/06</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/06/hexo%E5%AE%89%E8%A3%85/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo安装">hexo安装</span>
+            <span class="post-date" title="2020-03-06 12:49:29">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-2-vue%E7%9A%84%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-2-vue的指令">vue基础-2-vue的指令</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-0-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-0-谷歌安装vue-devtool插件">vue基础-0-谷歌安装vue-devtool插件</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/2-vue%E7%9A%84%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2-vue的指令">2-vue的指令</span>
+            <span class="post-date" title="2020-03-06 14:26:35">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-1-vue%E4%BB%8B%E7%BB%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-1-vue介绍">vue基础-1-vue介绍</span>
+            <span class="post-date" title="2020-03-06 13:02:22">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-10-vue%E5%8A%A8%E7%94%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-10-vue动画">vue基础-10-vue动画</span>
+            <span class="post-date" title="2020-03-06 13:02:22">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-3-vue%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%92%8Cif%E5%88%A4%E6%96%AD%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-3-vue的for循环和if判断指令">vue基础-3-vue的for循环和if判断指令</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-6-自定义指令">vue基础-6-自定义指令</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-4-%E8%BF%87%E6%BB%A4%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-4-过滤器">vue基础-4-过滤器</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-5-%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-5-按键修饰符">vue基础-5-按键修饰符</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%800-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础0-谷歌安装vue-devtool插件">vue基础0-谷歌安装vue-devtool插件</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-8-vue_resource%E5%AE%9E%E7%8E%B0%E5%90%91%E5%90%8E%E5%8F%B0%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-8-vue_resource实现向后台提交请求">vue基础-8-vue_resource实现向后台提交请求</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-11-vue%E8%B7%AF%E7%94%B1%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-11-vue路由插件">vue基础-11-vue路由插件</span>
+            <span class="post-date" title="2020-03-06 13:02:22">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-9-vue%E7%BB%84%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-9-vue组件">vue基础-9-vue组件</span>
+            <span class="post-date" title="2020-03-06 13:02:22">2020/03/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-7-vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-7-vue的生命周期">vue基础-7-vue的生命周期</span>
+            <span class="post-date" title="2020-03-06 13:02:21">2020/03/06</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-vue基础-11-vue路由插件" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">vue基础-11-vue路由插件</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-08 14:10:19'>2020-03-06 13:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是路由"><span class="toc-text">什么是路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在-vue-中使用-vue-router"><span class="toc-text">在 vue 中使用 vue-router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用tag属性指定router-link渲染的标签类型"><span class="toc-text">使用tag属性指定router-link渲染的标签类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置路由重定向"><span class="toc-text">设置路由重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置路由高亮"><span class="toc-text">设置路由高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置路由切换动效"><span class="toc-text">设置路由切换动效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在路由规则中定义参数"><span class="toc-text">在路由规则中定义参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-children-属性实现路由嵌套"><span class="toc-text">使用 children 属性实现路由嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名视图实现经典布局"><span class="toc-text">命名视图实现经典布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#watch属性的使用"><span class="toc-text">watch属性的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#computed计算属性的使用"><span class="toc-text">computed计算属性的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#watch、computed和methods之间的对比"><span class="toc-text">watch、computed和methods之间的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nrm的安装使用"><span class="toc-text">nrm的安装使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文件"><span class="toc-text">相关文件</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是路由"><a href="#什么是路由" class="headerlink" title="什么是路由"></a>什么是路由</h2><ol>
+<li><p><strong>后端路由：</strong>对于普通的网站，所有的超链接都是URL地址，所有的URL地址都对应服务器上对应的资源；</p>
+</li>
+<li><p><strong>前端路由：</strong>对于单页面应用程序来说，主要通过URL中的hash(#号)来实现不同页面之间的切换，同时，hash有一个特点：HTTP请求中不会包含hash相关的内容；所以，单页面程序中的页面跳转主要用hash实现；</p>
+</li>
+<li><p>在单页面应用程序中，这种通过hash改变来切换页面的方式，称作前端路由（区别于后端路由）；</p>
+</li>
+</ol>
+<h2 id="在-vue-中使用-vue-router"><a href="#在-vue-中使用-vue-router" class="headerlink" title="在 vue 中使用 vue-router"></a>在 vue 中使用 vue-router</h2><ol>
+<li><p>导入 vue-router 组件类库：</p>
+<pre><code>
+     &lt;!-- 1. 导入 vue-router 组件类库 --&gt;
+       &lt;script src=&quot;./lib/vue-router-2.7.0.js&quot;&gt;&lt;/script&gt;</code></pre></li>
+<li><p>使用 router-link 组件来导航</p>
+<pre><code>
+     &lt;!-- 2. 使用 router-link 组件来导航 --&gt;
+     &lt;router-link to=&quot;/login&quot;&gt;登录&lt;/router-link&gt;
+     &lt;router-link to=&quot;/register&quot;&gt;注册&lt;/router-link&gt;</code></pre></li>
+<li><p>使用 router-view 组件来显示匹配到的组件</p>
+<pre><code>
+     &lt;!-- 3. 使用 router-view 组件来显示匹配到的组件 --&gt;
+     &lt;router-view&gt;&lt;/router-view&gt;</code></pre></li>
+<li><p>创建使用<code>Vue.extend</code>创建组件</p>
+<pre><code>
+     // 4.1 使用 Vue.extend 来创建登录组件
+     var login = Vue.extend({
+       template: &#39;&lt;h1&gt;登录组件&lt;/h1&gt;&#39;
+     });
+
+     // 4.2 使用 Vue.extend 来创建注册组件
+     var register = Vue.extend({
+       template: &#39;&lt;h1&gt;注册组件&lt;/h1&gt;&#39;
+     });</code></pre></li>
+<li><p>创建一个路由 router 实例，通过 routers 属性来定义路由匹配规则</p>
+<pre><code>
+     // 5. 创建一个路由 router 实例，通过 routers 属性来定义路由匹配规则
+         var router = new VueRouter({
+           routes: [
+             { path: &#39;/login&#39;, component: login },
+             { path: &#39;/register&#39;, component: register }
+           ]
+         });</code></pre></li>
+<li><p>使用 router 属性来使用路由规则</p>
+<pre><code>
+     // 6. 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           router: router // 使用 router 属性来使用路由规则
+         });</code></pre></li>
+</ol>
+<h2 id="使用tag属性指定router-link渲染的标签类型"><a href="#使用tag属性指定router-link渲染的标签类型" class="headerlink" title="使用tag属性指定router-link渲染的标签类型"></a>使用tag属性指定router-link渲染的标签类型</h2><h2 id="设置路由重定向"><a href="#设置路由重定向" class="headerlink" title="设置路由重定向"></a>设置路由重定向</h2><h2 id="设置路由高亮"><a href="#设置路由高亮" class="headerlink" title="设置路由高亮"></a>设置路由高亮</h2><h2 id="设置路由切换动效"><a href="#设置路由切换动效" class="headerlink" title="设置路由切换动效"></a>设置路由切换动效</h2><h2 id="在路由规则中定义参数"><a href="#在路由规则中定义参数" class="headerlink" title="在路由规则中定义参数"></a>在路由规则中定义参数</h2><ol>
+<li><p>在规则中定义参数：</p>
+<pre><code>
+     { path: &#39;/register/:id&#39;, component: register }</code></pre></li>
+<li><p>通过 <code>this.$route.params</code>来获取路由中的参数：</p>
+<pre><code>
+     var register = Vue.extend({
+           template: &#39;&lt;h1&gt;注册组件 --- {{this.$route.params.id}}&lt;/h1&gt;&#39;
+         });</code></pre></li>
+</ol>
+<h2 id="使用-children-属性实现路由嵌套"><a href="#使用-children-属性实现路由嵌套" class="headerlink" title="使用 children 属性实现路由嵌套"></a>使用 <code>children</code> 属性实现路由嵌套</h2><pre><code>
+          &lt;div id=&quot;app&quot;&gt;
+            &lt;router-link to=&quot;/account&quot;&gt;Account&lt;/router-link&gt;
+
+            &lt;router-view&gt;&lt;/router-view&gt;
+          &lt;/div&gt;
+
+          &lt;script&gt;
+            // 父路由中的组件
+            const account = Vue.extend({
+              template: `&lt;div&gt;
+                这是account组件
+                &lt;router-link to=&quot;/account/login&quot;&gt;login&lt;/router-link&gt; | 
+                &lt;router-link to=&quot;/account/register&quot;&gt;register&lt;/router-link&gt;
+                &lt;router-view&gt;&lt;/router-view&gt;
+              &lt;/div&gt;`
+            });
+
+            // 子路由中的 login 组件
+            const login = Vue.extend({
+              template: &#39;&lt;div&gt;登录组件&lt;/div&gt;&#39;
+            });
+
+            // 子路由中的 register 组件
+            const register = Vue.extend({
+              template: &#39;&lt;div&gt;注册组件&lt;/div&gt;&#39;
+            });
+
+            // 路由实例
+            var router = new VueRouter({
+              routes: [
+                { path: &#39;/&#39;, redirect: &#39;/account/login&#39; }, // 使用 redirect 实现路由重定向
+                {
+                  path: &#39;/account&#39;,
+                  component: account,
+                  children: [ // 通过 children 数组属性，来实现路由的嵌套
+                    { path: &#39;login&#39;, component: login }, // 注意，子路由的开头位置，不要加 / 路径符
+                    { path: &#39;register&#39;, component: register }
+                  ]
+                }
+              ]
+            });
+
+            // 创建 Vue 实例，得到 ViewModel
+            var vm = new Vue({
+              el: &#39;#app&#39;,
+              data: {},
+              methods: {},
+              components: {
+                account
+              },
+              router: router
+            });
+          &lt;/script&gt;</code></pre><h2 id="命名视图实现经典布局"><a href="#命名视图实现经典布局" class="headerlink" title="命名视图实现经典布局"></a>命名视图实现经典布局</h2><ol>
+<li><p>标签代码结构：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;router-view&gt;&lt;/router-view&gt;
+         &lt;div class=&quot;content&quot;&gt;
+           &lt;router-view name=&quot;a&quot;&gt;&lt;/router-view&gt;
+           &lt;router-view name=&quot;b&quot;&gt;&lt;/router-view&gt;
+         &lt;/div&gt;
+       &lt;/div&gt;</code></pre></li>
+<li><p>JS代码：</p>
+<pre><code>
+     &lt;script&gt;
+         var header = Vue.component(&#39;header&#39;, {
+           template: &#39;&lt;div class=&quot;header&quot;&gt;header&lt;/div&gt;&#39;
+         });
+
+         var sidebar = Vue.component(&#39;sidebar&#39;, {
+           template: &#39;&lt;div class=&quot;sidebar&quot;&gt;sidebar&lt;/div&gt;&#39;
+         });
+
+         var mainbox = Vue.component(&#39;mainbox&#39;, {
+           template: &#39;&lt;div class=&quot;mainbox&quot;&gt;mainbox&lt;/div&gt;&#39;
+         });
+
+         // 创建路由对象
+         var router = new VueRouter({
+           routes: [
+             {
+               path: &#39;/&#39;, components: {
+                 default: header,
+                 a: sidebar,
+                 b: mainbox
+               }
+             }
+           ]
+         });
+
+         // 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           data: {},
+           methods: {},
+           router
+         });
+       &lt;/script&gt;</code></pre></li>
+<li><p>CSS 样式：</p>
+<pre><code>&lt;style&gt;
+ .header {
+   border: 1px solid red;
+ }
+
+ .content{
+   display: flex;
+ }
+ .sidebar {
+   flex: 2;
+   border: 1px solid green;
+   height: 500px;
+ }
+ .mainbox{
+   flex: 8;
+   border: 1px solid blue;
+   height: 500px;
+ }
+&lt;/style&gt;</code></pre></li>
+</ol>
+<h2 id="watch属性的使用"><a href="#watch属性的使用" class="headerlink" title="watch属性的使用"></a><code>watch</code>属性的使用</h2><p>考虑一个问题：想要实现 <code>名</code> 和 <code>姓</code> 两个文本框的内容改变，则全名的文本框中的值也跟着改变；（用以前的知识如何实现？？？）</p>
+<ol>
+<li><p>监听<code>data</code>中属性的改变：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;text&quot; v-model=&quot;firstName&quot;&gt; +
+         &lt;input type=&quot;text&quot; v-model=&quot;lastName&quot;&gt; =
+         &lt;span&gt;{{fullName}}&lt;/span&gt;
+       &lt;/div&gt;
+
+       &lt;script&gt;
+         // 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           data: {
+             firstName: &#39;jack&#39;,
+             lastName: &#39;chen&#39;,
+             fullName: &#39;jack - chen&#39;
+           },
+           methods: {},
+           watch: {
+             &#39;firstName&#39;: function (newVal, oldVal) { // 第一个参数是新数据，第二个参数是旧数据
+               this.fullName = newVal + &#39; - &#39; + this.lastName;
+             },
+             &#39;lastName&#39;: function (newVal, oldVal) {
+               this.fullName = this.firstName + &#39; - &#39; + newVal;
+             }
+           }
+         });
+       &lt;/script&gt;</code></pre></li>
+<li><p>监听路由对象的改变：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;router-link to=&quot;/login&quot;&gt;登录&lt;/router-link&gt;
+         &lt;router-link to=&quot;/register&quot;&gt;注册&lt;/router-link&gt;
+
+         &lt;router-view&gt;&lt;/router-view&gt;
+       &lt;/div&gt;
+
+       &lt;script&gt;
+         var login = Vue.extend({
+           template: &#39;&lt;h1&gt;登录组件&lt;/h1&gt;&#39;
+         });
+
+         var register = Vue.extend({
+           template: &#39;&lt;h1&gt;注册组件&lt;/h1&gt;&#39;
+         });
+
+         var router = new VueRouter({
+           routes: [
+             { path: &quot;/login&quot;, component: login },
+             { path: &quot;/register&quot;, component: register }
+           ]
+         });
+
+         // 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           data: {},
+           methods: {},
+           router: router,
+           watch: {
+             &#39;$route&#39;: function (newVal, oldVal) {
+               if (newVal.path === &#39;/login&#39;) {
+                 console.log(&#39;这是登录组件&#39;);
+               }
+             }
+           }
+         });
+       &lt;/script&gt;</code></pre></li>
+</ol>
+<h2 id="computed计算属性的使用"><a href="#computed计算属性的使用" class="headerlink" title="computed计算属性的使用"></a><code>computed</code>计算属性的使用</h2><ol>
+<li><p>默认只有<code>getter</code>的计算属性：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;text&quot; v-model=&quot;firstName&quot;&gt; +
+         &lt;input type=&quot;text&quot; v-model=&quot;lastName&quot;&gt; =
+         &lt;span&gt;{{fullName}}&lt;/span&gt;
+       &lt;/div&gt;
+
+       &lt;script&gt;
+         // 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           data: {
+             firstName: &#39;jack&#39;,
+             lastName: &#39;chen&#39;
+           },
+           methods: {},
+           computed: { // 计算属性； 特点：当计算属性中所以来的任何一个 data 属性改变之后，都会重新触发 本计算属性 的重新计算，从而更新 fullName 的值
+             fullName() {
+               return this.firstName + &#39; - &#39; + this.lastName;
+             }
+           }
+         });
+       &lt;/script&gt;</code></pre></li>
+<li><p>定义有<code>getter</code>和<code>setter</code>的计算属性：</p>
+<pre><code>
+     &lt;div id=&quot;app&quot;&gt;
+         &lt;input type=&quot;text&quot; v-model=&quot;firstName&quot;&gt;
+         &lt;input type=&quot;text&quot; v-model=&quot;lastName&quot;&gt;
+         &lt;!-- 点击按钮重新为 计算属性 fullName 赋值 --&gt;
+         &lt;input type=&quot;button&quot; value=&quot;修改fullName&quot; @click=&quot;changeName&quot;&gt;
+
+         &lt;span&gt;{{fullName}}&lt;/span&gt;
+       &lt;/div&gt;
+
+       &lt;script&gt;
+         // 创建 Vue 实例，得到 ViewModel
+         var vm = new Vue({
+           el: &#39;#app&#39;,
+           data: {
+             firstName: &#39;jack&#39;,
+             lastName: &#39;chen&#39;
+           },
+           methods: {
+             changeName() {
+               this.fullName = &#39;TOM - chen2&#39;;
+             }
+           },
+           computed: {
+             fullName: {
+               get: function () {
+                 return this.firstName + &#39; - &#39; + this.lastName;
+               },
+               set: function (newVal) {
+                 var parts = newVal.split(&#39; - &#39;);
+                 this.firstName = parts[0];
+                 this.lastName = parts[1];
+               }
+             }
+           }
+         });
+       &lt;/script&gt;</code></pre></li>
+</ol>
+<h2 id="watch、computed和methods之间的对比"><a href="#watch、computed和methods之间的对比" class="headerlink" title="watch、computed和methods之间的对比"></a><code>watch</code>、<code>computed</code>和<code>methods</code>之间的对比</h2><ol>
+<li><code>computed</code>属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。主要当作属性来使用；</li>
+<li><code>methods</code>方法表示一个具体的操作，主要书写业务逻辑；</li>
+<li><code>watch</code>一个对象，键是需要观察的表达式，值是对应回调函数。主要用来监听某些特定数据的变化，从而进行某些具体的业务逻辑操作；可以看作是<code>computed</code>和<code>methods</code>的结合体；</li>
+</ol>
+<h2 id="nrm的安装使用"><a href="#nrm的安装使用" class="headerlink" title="nrm的安装使用"></a><code>nrm</code>的安装使用</h2><p>作用：提供了一些最常用的NPM包镜像地址，能够让我们快速的切换安装包时候的服务器地址；<br>什么是镜像：原来包刚一开始是只存在于国外的NPM服务器，但是由于网络原因，经常访问不到，这时候，我们可以在国内，创建一个和官网完全一样的NPM服务器，只不过，数据都是从人家那里拿过来的，除此之外，使用方式完全一样；</p>
+<ol>
+<li>运行<code>npm i nrm -g</code>全局安装<code>nrm</code>包；</li>
+<li>使用<code>nrm ls</code>查看当前所有可用的镜像源地址以及当前所使用的镜像源地址；</li>
+<li>使用<code>nrm use npm</code>或<code>nrm use taobao</code>切换不同的镜像源地址；</li>
+</ol>
+<h2 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h2><ol>
+<li><a href="http://www.cnblogs.com/joyho/articles/4430148.html" target="_blank" rel="noopener">URL中的hash（井号）</a></li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2020 nlzh</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | nlzh</title>
+  <title>2-vue的指令 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="about | nlzh">
+  <meta name="description" content="2-vue的指令 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -353,9 +353,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-2-vue的指令" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">2-vue的指令</h1>
     
     <div class="article-meta">
         
@@ -365,12 +365,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-04 23:00:49'>2020-03-04 23:00</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-06 14:26:35'>2020-03-06 14:26</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:893</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -389,7 +389,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue的指令"><span class="toc-text">vue的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue基本的代码结构"><span class="toc-text">vue基本的代码结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue的指令-1"><span class="toc-text">vue的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插值指令-v-cloak和v-text"><span class="toc-text">插值指令 v-cloak和v-text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-html-给标签赋html"><span class="toc-text">v-html 给标签赋html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性绑定指令-v-bind"><span class="toc-text">属性绑定指令 v-bind</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定指令-v-on"><span class="toc-text">事件绑定指令 v-on</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件修饰符"><span class="toc-text">事件修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-model-双向数据绑定"><span class="toc-text">v-model 双向数据绑定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Vue中使用样式"><span class="toc-text">在Vue中使用样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用class样式"><span class="toc-text">使用class样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用内联样式"><span class="toc-text">使用内联样式</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -405,7 +405,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="vue的指令"><a href="#vue的指令" class="headerlink" title="vue的指令"></a>vue的指令</h1><h2 id="vue基本的代码结构"><a href="#vue基本的代码结构" class="headerlink" title="vue基本的代码结构"></a>vue基本的代码结构</h2><pre><code>    &lt;style&gt;
+        [v-cloak] {
+          display: none; 
+        }
+     &lt;/style&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;p v-cloak&gt;${{ msg}}&lt;/p&gt;
+        &lt;h4 v-text=&quot;msg&quot; &gt;&lt;/h4&gt;
+         &lt;input type=&quot;button&quot; value=&quot;开启&quot; v-on:click=&quot;go&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;停止&quot; v-on:click=&quot;stop&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../../lib/vue/vue-2.4.0.js&quot; &gt;&lt;/script&gt;
+    &lt;script&gt;
+        var vm = new Vue({
+            el: &#39;#app&#39;,
+            data:{
+                msg:&#39;123&#39;
+            }
+        })
+
+    &lt;/script&gt;</code></pre><h2 id="vue的指令-1"><a href="#vue的指令-1" class="headerlink" title="vue的指令"></a>vue的指令</h2><h3 id="插值指令-v-cloak和v-text"><a href="#插值指令-v-cloak和v-text" class="headerlink" title="插值指令 v-cloak和v-text"></a>插值指令 v-cloak和v-text</h3><p>v-cloak和v-text都是用作给标签赋值</p>
+<pre><code>            v-cloak: 
+                缺点：有闪烁问题，在网速慢的情况下会把 ${{msg}}显露出来，需要css处理下
+                优点：可以在元素体拼接其他字符串
+            v-text：
+                优点：没有闪烁问题，直接用
+                缺点：不可用和其他字符串拼接</code></pre><h3 id="v-html-给标签赋html"><a href="#v-html-给标签赋html" class="headerlink" title="v-html 给标签赋html"></a>v-html 给标签赋html</h3><p>v-html 相当于append（）方法，输入html字符串生成html标签</p>
+<p><code>&lt;h4 v-text=&quot;msg&quot; &gt;&lt;/h4&gt;</code></p>
+<h3 id="属性绑定指令-v-bind"><a href="#属性绑定指令-v-bind" class="headerlink" title="属性绑定指令 v-bind"></a>属性绑定指令 v-bind</h3><ul>
+<li>绑定属性 这样title属性的值为vue的data参数的myTitle</li>
+</ul>
+<pre><code>    全写方式&lt;input type=&quot;button&quot; v-bind:title=&quot;myTitle&quot; value=&quot;开启&quot; &gt;
+    简写方式&lt;input type=&quot;button&quot;:title=&quot;myTitle&quot; value=&quot;开启&quot; &gt;</code></pre><p>​        </p>
+<h3 id="事件绑定指令-v-on"><a href="#事件绑定指令-v-on" class="headerlink" title="事件绑定指令 v-on"></a>事件绑定指令 v-on</h3><pre><code>正常写法：&lt;input type=&quot;button&quot; value=&quot;开启&quot; v-on:click=&quot;go&quot;&gt;&lt;br/&gt;
+简写方式：&lt;input type=&quot;button&quot; value=&quot;停止&quot; @:click=&quot;stop&quot;&gt;</code></pre><h3 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h3><ul>
+<li><p>.stop       阻止冒泡</p>
+</li>
+<li><p>.prevent    阻止默认事件</p>
+</li>
+<li><p>.capture    添加事件侦听器时使用事件捕获模式</p>
+</li>
+<li><p>.self       只当事件在该元素本身（比如不是子元素）触发时触发回调</p>
+</li>
+<li><p>.once       事件只触发一次</p>
+</li>
+</ul>
+<h3 id="v-model-双向数据绑定"><a href="#v-model-双向数据绑定" class="headerlink" title="v-model 双向数据绑定"></a>v-model 双向数据绑定</h3><p>双向数据绑定：就是你表单的数据进行修改，同时会更新你vue对象data中对应的属性的值</p>
+<pre><code> &lt;!-- v-model 只能运用在 表单元素中 --&gt;
+ &lt;input type=&quot;text&quot; style=&quot;width:100%;&quot; v-model=&quot;msg&quot;&gt;</code></pre><h2 id="在Vue中使用样式"><a href="#在Vue中使用样式" class="headerlink" title="在Vue中使用样式"></a>在Vue中使用样式</h2><h3 id="使用class样式"><a href="#使用class样式" class="headerlink" title="使用class样式"></a>使用class样式</h3><ol>
+<li><p>数组</p>
+<pre><code> ```html
+ &lt;h1 :class=&quot;[&#39;red&#39;, &#39;thin&#39;]&quot;&gt;这是一个邪恶的H1&lt;/h1&gt;
+ ```</code></pre></li>
+</ol>
+<ol start="2">
+<li><p>数组中使用三元表达式</p>
+<pre><code> ```html
+ &lt;h1 :class=&quot;[&#39;red&#39;, &#39;thin&#39;, isactive?&#39;active&#39;:&#39;&#39;]&quot;&gt;这是一个邪恶的H1&lt;/h1&gt;
+ ```</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>数组中嵌套对象</p>
+<pre><code> ```html
+ &lt;h1 :class=&quot;[&#39;red&#39;, &#39;thin&#39;, {&#39;active&#39;: isactive}]&quot;&gt;这是一个邪恶的H1&lt;/h1&gt;
+ ```</code></pre></li>
+</ol>
+<ol start="4">
+<li><p>直接使用对象</p>
+<pre><code> ```
+ &lt;h1 :class=&quot;{red:true, italic:true, active:true, thin:true}&quot;&gt;这是一个邪恶的H1&lt;/h1&gt;
+ ```</code></pre></li>
+</ol>
+<h3 id="使用内联样式"><a href="#使用内联样式" class="headerlink" title="使用内联样式"></a>使用内联样式</h3><ol>
+<li>直接在元素上通过 <code>:style</code> 的形式，书写样式对象</li>
+</ol>
+<pre><code class="html">    &lt;h1 :style=&quot;{color: &#39;red&#39;, &#39;font-size&#39;: &#39;40px&#39;}&quot;&gt;这是一个善良的H1&lt;/h1&gt;</code></pre>
+<ol start="2">
+<li><p>将样式对象，定义到 <code>data</code> 中，并直接引用到 <code>:style</code> 中</p>
+<ul>
+<li><p>在data上定义样式：</p>
+<pre><code>data: {
+    h1StyleObj: { color: &#39;red&#39;, &#39;font-size&#39;: &#39;40px&#39;, &#39;font-weight&#39;: &#39;200&#39; }
+}</code></pre></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>在元素中，通过属性绑定的形式，将样式对象应用到元素中：</p>
+<pre><code>     ```html
+     &lt;h1 :style=&quot;h1StyleObj&quot;&gt;这是一个善良的H1&lt;/h1&gt;
+     ```</code></pre></li>
+</ul>
+<ol start="3">
+<li>在 <code>:style</code> 中通过数组，引用多个 <code>data</code> 上的样式对象<ul>
+<li>在data上定义样式：</li>
+</ul>
+</li>
+</ol>
+<pre><code class="css">        data: {
+                h1StyleObj: { color: &#39;red&#39;, &#39;font-size&#39;: &#39;40px&#39;, &#39;font-weight&#39;: &#39;200&#39; },
+                h1StyleObj2: { fontStyle: &#39;italic&#39; }
+        }</code></pre>
+<ul>
+<li><p>在元素中，通过属性绑定的形式，将样式对象应用到元素中：</p>
+<pre><code>     ```
+     &lt;h1 :style=&quot;[h1StyleObj, h1StyleObj2]&quot;&gt;这是一个善良的H1&lt;/h1&gt;
+     ```</code></pre></li>
+</ul>
+
       
        <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
     </div>

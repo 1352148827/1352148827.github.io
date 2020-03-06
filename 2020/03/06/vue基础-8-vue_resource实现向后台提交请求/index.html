@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | nlzh</title>
+  <title>vue基础-8-vue_resource实现向后台提交请求 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="about | nlzh">
+  <meta name="description" content="vue基础-8-vue_resource实现向后台提交请求 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -353,9 +353,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-vue基础-8-vue_resource实现向后台提交请求" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">vue基础-8-vue_resource实现向后台提交请求</h1>
     
     <div class="article-meta">
         
@@ -365,12 +365,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-04 23:00:49'>2020-03-04 23:00</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-06 13:22:26'>2020-03-06 13:02</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:839</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -389,7 +389,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#向后台提交请求"><span class="toc-text">向后台提交请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-vue-resource"><span class="toc-text">1 vue-resource</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -405,7 +405,103 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="向后台提交请求"><a href="#向后台提交请求" class="headerlink" title="向后台提交请求"></a>向后台提交请求</h1><h2 id="1-vue-resource"><a href="#1-vue-resource" class="headerlink" title="1 vue-resource"></a>1 vue-resource</h2><p><a href="https://github.com/pagekit/vue-resource" target="_blank" rel="noopener">vue-resource</a></p>
+<ol start="3">
+<li><p>测试的URL请求资源地址：</p>
+<ul>
+<li>get请求地址： <a href="http://vue.studyit.io/api/getlunbo" target="_blank" rel="noopener">http://vue.studyit.io/api/getlunbo</a></li>
+<li>post请求地址：<a href="http://vue.studyit.io/api/post" target="_blank" rel="noopener">http://vue.studyit.io/api/post</a></li>
+<li>jsonp请求地址：<a href="http://vue.studyit.io/api/jsonp" target="_blank" rel="noopener">http://vue.studyit.io/api/jsonp</a></li>
+</ul>
+</li>
+<li><p>JSONP的实现原理</p>
+<ul>
+<li>由于浏览器的安全性限制，不允许AJAX访问 协议不同、域名不同、端口号不同的 数据接口，浏览器认为这种访问不安全；</li>
+<li>可以通过动态创建script标签的形式，把script标签的src属性，指向数据接口的地址，因为script标签不存在跨域限制，这种数据获取方式，称作JSONP（注意：根据JSONP的实现原理，知晓，JSONP只支持Get请求）；</li>
+<li>具体实现过程：<ul>
+<li>先在客户端定义一个回调方法，预定义对数据的操作；</li>
+<li>再把这个回调方法的名称，通过URL传参的形式，提交到服务器的数据接口；</li>
+<li>服务器数据接口组织好要发送给客户端的数据，再拿着客户端传递过来的回调方法名称，拼接出一个调用这个方法的字符串，发送给客户端去解析执行；</li>
+<li>客户端拿到服务器返回的字符串之后，当作Script脚本去解析执行，这样就能够拿到JSONP的数据了；</li>
+</ul>
+</li>
+<li>通过 Node.js ，来手动实现一个JSONP的请求例子；</li>
+</ul>
+<pre><code class="js">
+     const http = require(&#39;http&#39;);
+     // 导入解析 URL 地址的核心模块
+     const urlModule = require(&#39;url&#39;);
+
+     const server = http.createServer();
+     // 监听 服务器的 request 请求事件，处理每个请求
+     server.on(&#39;request&#39;, (req, res) =&gt; {
+       const url = req.url;
+
+       // 解析客户端请求的URL地址
+       var info = urlModule.parse(url, true);
+
+       // 如果请求的 URL 地址是 /getjsonp ，则表示要获取JSONP类型的数据
+       if (info.pathname === &#39;/getjsonp&#39;) {
+         // 获取客户端指定的回调函数的名称
+         var cbName = info.query.callback;
+         // 手动拼接要返回给客户端的数据对象
+         var data = {
+           name: &#39;zs&#39;,
+           age: 22,
+           gender: &#39;男&#39;,
+           hobby: [&#39;吃饭&#39;, &#39;睡觉&#39;, &#39;运动&#39;]
+         }
+         // 拼接出一个方法的调用，在调用这个方法的时候，把要发送给客户端的数据，序列化为字符串，作为参数传递给这个调用的方法：
+         var result = `${cbName}(${JSON.stringify(data)})`;
+         // 将拼接好的方法的调用，返回给客户端去解析执行
+         res.end(result);
+       } else {
+         res.end(&#39;404&#39;);
+       }
+     });
+
+     server.listen(3000, () =&gt; {
+       console.log(&#39;server running at http://127.0.0.1:3000&#39;);
+     });
+</code></pre>
+</li>
+<li><p>vue-resource 的配置步骤：</p>
+<ul>
+<li>直接在页面中，通过<code>script</code>标签，引入 <code>vue-resource</code> 的脚本文件；</li>
+<li>注意：引用的先后顺序是：先引用 <code>Vue</code> 的脚本文件，再引用 <code>vue-resource</code> 的脚本文件；</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li><p>发送get请求：</p>
+<pre><code>
+     getInfo() { // get 方式获取数据
+       this.$http.get(&#39;http://127.0.0.1:8899/api/getlunbo&#39;).then(res =&gt; {
+         console.log(res.body);
+       })
+     }</code></pre></li>
+<li><p>发送post请求：</p>
+<pre><code>
+     postInfo() {
+       var url = &#39;http://127.0.0.1:8899/api/post&#39;;
+       // post 方法接收三个参数：
+       // 参数1： 要请求的URL地址
+       // 参数2： 要发送的数据对象
+       // 参数3： 指定post提交的编码类型为 application/x-www-form-urlencoded
+       this.$http.post(url, { name: &#39;zs&#39; }, { emulateJSON: true }).then(res =&gt; {
+         console.log(res.body);
+       });
+     }</code></pre></li>
+<li><p>发送JSONP请求获取数据：</p>
+<pre><code>
+     jsonpInfo() { // JSONP形式从服务器获取数据
+       var url = &#39;http://127.0.0.1:8899/api/jsonp&#39;;
+       this.$http.jsonp(url).then(res =&gt; {
+         console.log(res.body);
+       });
+     }</code></pre></li>
+</ol>
+
       
        <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
     </div>
