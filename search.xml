@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2020/03/06/test/"/>
-      <url>/2020/03/06/test/</url>
-      
-        <content type="html"><![CDATA[<p><img src="/2020/03/06/test/1.jpg" alt></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>web/vue/基础/9-vue组件</title>
       <link href="/2020/03/06/web/vue/%E5%9F%BA%E7%A1%80/9-vue%E7%BB%84%E4%BB%B6/"/>
       <url>/2020/03/06/web/vue/%E5%9F%BA%E7%A1%80/9-vue%E7%BB%84%E4%BB%B6/</url>
@@ -187,10 +174,10 @@
     
     <entry>
       <title>hexo使用</title>
-      <link href="/2020/03/06/%E8%BF%90%E7%BB%B4/hexo/hexo%E4%BD%BF%E7%94%A8/"/>
-      <url>/2020/03/06/%E8%BF%90%E7%BB%B4/hexo/hexo%E4%BD%BF%E7%94%A8/</url>
+      <link href="/2020/03/06/dev/hexo/hexo%E4%BD%BF%E7%94%A8/"/>
+      <url>/2020/03/06/dev/hexo/hexo%E4%BD%BF%E7%94%A8/</url>
       
-        <content type="html"><![CDATA[<h2 id="1-hexo部署"><a href="#1-hexo部署" class="headerlink" title="1 hexo部署"></a>1 hexo部署</h2><pre><code class="bash">hexo cleanhexo ghexo d</code></pre><h2 id="2-hexo快捷键"><a href="#2-hexo快捷键" class="headerlink" title="2 hexo快捷键"></a>2 hexo快捷键</h2><p><img src="/2020/03/06/%E8%BF%90%E7%BB%B4/hexo/hexo%E4%BD%BF%E7%94%A8/1.jpg" alt></p><h2 id="3-模板"><a href="#3-模板" class="headerlink" title="3 模板"></a>3 模板</h2><pre><code class="bash">title: hexo使用date: 2020-03-06 10:32:12categories:tags:</code></pre><h2 id="4-本地启动"><a href="#4-本地启动" class="headerlink" title="4 本地启动"></a>4 本地启动</h2><pre><code class="bash">hexo server</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="1-hexo部署"><a href="#1-hexo部署" class="headerlink" title="1 hexo部署"></a>1 hexo部署</h2><pre><code class="bash">hexo cleanhexo ghexo d</code></pre><h2 id="2-hexo快捷键"><a href="#2-hexo快捷键" class="headerlink" title="2 hexo快捷键"></a>2 hexo快捷键</h2><p><img src="https://1352148827.github.io/dev/hexo/1.jpg" alt></p><h2 id="3-模板"><a href="#3-模板" class="headerlink" title="3 模板"></a>3 模板</h2><pre><code class="bash">title: hexo使用date: 2020-03-06 10:32:12categories:tags:</code></pre><h2 id="4-本地启动"><a href="#4-本地启动" class="headerlink" title="4 本地启动"></a>4 本地启动</h2><pre><code class="bash">hexo server</code></pre>]]></content>
       
       
       <categories>
@@ -206,8 +193,8 @@
     
     <entry>
       <title>hexo博客安装和使用</title>
-      <link href="/2020/03/06/%E8%BF%90%E7%BB%B4/hexo/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
-      <url>/2020/03/06/%E8%BF%90%E7%BB%B4/hexo/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+      <link href="/2020/03/06/dev/hexo/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+      <url>/2020/03/06/dev/hexo/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
       
         <content type="html"><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">官网: https://hexo.io/zh-cn/</a></p><pre><code>    Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。    Hexo可以一键部署到github上</code></pre><h2 id="1-安装hexo-github-hexo"><a href="#1-安装hexo-github-hexo" class="headerlink" title="1 安装hexo(github+hexo)"></a>1 安装hexo(github+hexo)</h2><h3 id="1-1-安装前提"><a href="#1-1-安装前提" class="headerlink" title="1.1 安装前提"></a>1.1 安装前提</h3><pre><code>需要安装软件    nodejs 版本不低于8.10,建议用10.0版本以上    git    </code></pre><h3 id="1-2-安装步骤"><a href="#1-2-安装步骤" class="headerlink" title="1.2 安装步骤"></a>1.2 安装步骤</h3><pre><code class="bash">// 全局安装hexonpm install hexo-cli -g// 创建&quot;blog&quot;博客项目hexo init blog// 进入博客项目cd blog// 安装依赖npm install// 安装git部署插件cnpm install --save hexo-deployer-git// 运行系统hexo server</code></pre><h3 id="1-3-github创建仓库"><a href="#1-3-github创建仓库" class="headerlink" title="1.3 github创建仓库"></a>1.3 github创建仓库</h3><pre><code>在github上创建仓库 仓库名固定为: xxx.github.io  (xxx为github的用户名)                        示例: 1352148827.github.io</code></pre><h3 id="1-4-配置-config-yml"><a href="#1-4-配置-config-yml" class="headerlink" title="1.4 配置_config.yml"></a>1.4 配置_config.yml</h3><p>在_config.yml中配置git的地址</p><pre><code class="yaml"># Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy:  type: git  repo: https://github.com/1352148827/1352148827.github.io.git  branch: master</code></pre><h3 id="1-5-部署到github上"><a href="#1-5-部署到github上" class="headerlink" title="1.5 部署到github上"></a>1.5 部署到github上</h3><pre><code>在博客项目下执行命令:    hexo deploy</code></pre><h3 id="1-4-hexo目录结构"><a href="#1-4-hexo目录结构" class="headerlink" title="1.4 hexo目录结构"></a>1.4 hexo目录结构</h3><pre><code>hexo目录结构主义分为三个部分,一个配置文件, _config.yml是网站的配置,scaffolds目录是存放模板的,source目录主要存放资源文件的,themes目录主要是存放主题的</code></pre><pre><code>.├── _config.yml        // 网站配置信息;参考:├── package.json├── scaffolds        // 模板文件夹    参考: https://hexo.io/zh-cn/docs/writing├── source            // 资源文件夹是存放用户资源的地方除|   ├── _drafts|   └── _posts└── themes            // 主题文件夹,Hexo 会根据主题来生成静态页面。                     // 参考:https://hexo.io/zh-cn/docs/themes</code></pre><pre><code>source目录:  _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。</code></pre><h2 id="2-hexo使用"><a href="#2-hexo使用" class="headerlink" title="2 hexo使用"></a>2 hexo使用</h2><h3 id="2-0-hexo上传github命令"><a href="#2-0-hexo上传github命令" class="headerlink" title="2.0 hexo上传github命令"></a>2.0 hexo上传github命令</h3><pre><code>hexo cleanhexo ghexo d</code></pre><h3 id="2-1-hexo创建文章"><a href="#2-1-hexo创建文章" class="headerlink" title="2.1 hexo创建文章"></a>2.1 hexo创建文章</h3><pre><code>hexo new 模板名 &quot;文章名称&quot;hexo new post  &quot;My New Post&quot;</code></pre><h3 id="2-2-启动项目"><a href="#2-2-启动项目" class="headerlink" title="2.2 启动项目"></a>2.2 启动项目</h3><pre><code>hexo servernpm run server</code></pre><h3 id="2-3-编译项目"><a href="#2-3-编译项目" class="headerlink" title="2.3 编译项目"></a>2.3 编译项目</h3><pre><code>hexo generatenpm run build</code></pre><h3 id="2-4-清理项目"><a href="#2-4-清理项目" class="headerlink" title="2.4 清理项目"></a>2.4 清理项目</h3><pre><code>hexo cleannpm run clean</code></pre><h3 id="2-5-部署github"><a href="#2-5-部署github" class="headerlink" title="2.5 部署github"></a>2.5 部署github</h3><pre><code>hexo deploynpm run deploy</code></pre><h3 id="2-6-查看博客"><a href="#2-6-查看博客" class="headerlink" title="2.6 查看博客"></a>2.6 查看博客</h3><pre><code>https://github用户名.github.io示例 https://1352148827.github.io</code></pre><h2 id="3-hexo的背景"><a href="#3-hexo的背景" class="headerlink" title="3 hexo的背景"></a>3 hexo的背景</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">更多背景参考: https://hexo.io/themes/ </a></p><h3 id="3-1-yilia"><a href="#3-1-yilia" class="headerlink" title="3.1 yilia"></a>3.1 yilia</h3><pre><code>git clone https://github.com/litten/hexo-theme-yilia themes/yiliahexo-3</code></pre><h3 id="3-2-3-hexo"><a href="#3-2-3-hexo" class="headerlink" title="3.2 3-hexo"></a>3.2 3-hexo</h3><pre><code>git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo</code></pre>]]></content>
       
