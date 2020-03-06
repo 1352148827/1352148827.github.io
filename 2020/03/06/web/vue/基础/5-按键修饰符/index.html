@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>nlzh</title>
+  <title>web/vue/基础/5-按键修饰符 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="nlzh">
+  <meta name="description" content="web/vue/基础/5-按键修饰符 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -351,12 +351,45 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-web/vue/基础/5-按键修饰符" class="article article-type-post" itemscope itemprop="blogPost">
     
+        <h1 class="article-title">web/vue/基础/5-按键修饰符</h1>
+    
+    <div class="article-meta">
         
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-08 14:10:19'>2020-03-06 11:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:104</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘修饰符以及自定义键盘修饰符"><span class="toc-text">键盘修饰符以及自定义键盘修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-x中自定义键盘修饰符【了解即可】"><span class="toc-text">1.x中自定义键盘修饰符【了解即可】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-x中自定义键盘修饰符"><span class="toc-text">2.x中自定义键盘修饰符</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -369,10 +402,36 @@
     }
 </style>
 </div>
-            <pre><code>学无止境</code></pre>
-        </article>
-        
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="键盘修饰符以及自定义键盘修饰符"><a href="#键盘修饰符以及自定义键盘修饰符" class="headerlink" title="键盘修饰符以及自定义键盘修饰符"></a>键盘修饰符以及自定义键盘修饰符</h2><h3 id="1-x中自定义键盘修饰符【了解即可】"><a href="#1-x中自定义键盘修饰符【了解即可】" class="headerlink" title="1.x中自定义键盘修饰符【了解即可】"></a>1.x中自定义键盘修饰符【了解即可】</h3><pre><code>
+    Vue.directive(&#39;on&#39;).keyCodes.f2 = 113;
+</code></pre><h3 id="2-x中自定义键盘修饰符"><a href="#2-x中自定义键盘修饰符" class="headerlink" title="2.x中自定义键盘修饰符"></a><a href="https://cn.vuejs.org/v2/guide/events.html#键值修饰符" target="_blank" rel="noopener">2.x中自定义键盘修饰符</a></h3><ol>
+<li>通过<code>Vue.config.keyCodes.名称 = 按键值</code>来自定义案件修饰符的别名：</li>
+</ol>
+<pre><code>
+    Vue.config.keyCodes.f2 = 113;
+</code></pre><ol start="2">
+<li>使用自定义的按键修饰符：</li>
+</ol>
+<pre><code>
+    &lt;input type=&quot;text&quot; v-model=&quot;name&quot; @keyup.f2=&quot;add&quot;&gt;
+</code></pre>
+      
+       <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2020 nlzh</p>

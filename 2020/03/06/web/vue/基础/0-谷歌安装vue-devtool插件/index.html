@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>nlzh</title>
+  <title>web/vue/基础/0-谷歌安装vue-devtool插件 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="nlzh">
+  <meta name="description" content="web/vue/基础/0-谷歌安装vue-devtool插件 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -351,12 +351,45 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-web/vue/基础/0-谷歌安装vue-devtool插件" class="article article-type-post" itemscope itemprop="blogPost">
     
+        <h1 class="article-title">web/vue/基础/0-谷歌安装vue-devtool插件</h1>
+    
+    <div class="article-meta">
         
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-02-07 12:36:00'>2020-03-06 11:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:156</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#谷歌安装vue-devtool插件"><span class="toc-text">谷歌安装vue-devtool插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-下载插件"><span class="toc-text">1 下载插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装依赖js"><span class="toc-text">2 安装依赖js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-编译"><span class="toc-text">3 编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-修改配置"><span class="toc-text">4 修改配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-谷歌安装插件"><span class="toc-text">5 谷歌安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-测试安装"><span class="toc-text">6 测试安装</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -369,10 +402,33 @@
     }
 </style>
 </div>
-            <pre><code>学无止境</code></pre>
-        </article>
-        
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="谷歌安装vue-devtool插件"><a href="#谷歌安装vue-devtool插件" class="headerlink" title="谷歌安装vue-devtool插件"></a>谷歌安装vue-devtool插件</h1><h2 id="1-下载插件"><a href="#1-下载插件" class="headerlink" title="1 下载插件"></a>1 下载插件</h2><pre><code>git clone https://github.com/vuejs/vue-devtools.git</code></pre><h2 id="2-安装依赖js"><a href="#2-安装依赖js" class="headerlink" title="2 安装依赖js"></a>2 安装依赖js</h2><pre><code>cd vue-devtools-dev
+cnpm install</code></pre><h2 id="3-编译"><a href="#3-编译" class="headerlink" title="3 编译"></a>3 编译</h2><pre><code>npm run build</code></pre><h2 id="4-修改配置"><a href="#4-修改配置" class="headerlink" title="4 修改配置"></a>4 修改配置</h2><blockquote>
+<p>进入 vue-devtools-dev&gt;shells&gt;chrome&gt;manifest.json </p>
+<p>将  persistent的value值改为true</p>
+</blockquote>
+<p><img src="/2020/03/06/web/vue/%E5%9F%BA%E7%A1%80/0-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/1.jpg" alt></p>
+<h2 id="5-谷歌安装插件"><a href="#5-谷歌安装插件" class="headerlink" title="5 谷歌安装插件"></a>5 谷歌安装插件</h2><pre><code>打开chrome浏览器，打开更多工具&gt;扩展程序；
+再点击加载已解压的扩展程序，然后把shells&gt;chrome文件夹放入</code></pre><p><img src="/2020/03/06/web/vue/%E5%9F%BA%E7%A1%80/0-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/2.jpg" alt></p>
+<h2 id="6-测试安装"><a href="#6-测试安装" class="headerlink" title="6 测试安装"></a>6 测试安装</h2><pre><code>在插件的目录下执行npm run dev，这个时候我们的插件就可以运行了,打开localhost:8080可以看到插件已经安装并运行了。</code></pre><p><img src="/2020/03/06/web/vue/%E5%9F%BA%E7%A1%80/0-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/3.jpg" alt></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2020 nlzh</p>

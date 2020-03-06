@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>nlzh</title>
+  <title>web/vue/基础/3-vue的for循环和if判断指令 | nlzh</title>
   <meta name="keywords" content="">
-  <meta name="description" content="nlzh">
+  <meta name="description" content="web/vue/基础/3-vue的for循环和if判断指令 | nlzh">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="虞奥飞的博客">
 <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -351,12 +351,45 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-web/vue/基础/3-vue的for循环和if判断指令" class="article article-type-post" itemscope itemprop="blogPost">
     
+        <h1 class="article-title">web/vue/基础/3-vue的for循环和if判断指令</h1>
+    
+    <div class="article-meta">
         
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-08 14:10:19'>2020-03-06 11:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:340</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue指令之v-for和key属性"><span class="toc-text">Vue指令之v-for和key属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue指令之v-if和v-show"><span class="toc-text">Vue指令之v-if和v-show</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -369,10 +402,49 @@
     }
 </style>
 </div>
-            <pre><code>学无止境</code></pre>
-        </article>
-        
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue指令之v-for和key属性"><a href="#Vue指令之v-for和key属性" class="headerlink" title="Vue指令之v-for和key属性"></a>Vue指令之<code>v-for</code>和<code>key</code>属性</h2><ol>
+<li>迭代数组</li>
+</ol>
+<pre><code>        &lt;ul&gt;
+             &lt;li v-for=&quot;(item, i) in list&quot;&gt;索引：{{i}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}&lt;/li&gt;
+        &lt;/ul&gt;</code></pre><ol start="2">
+<li>迭代对象中的属性</li>
+</ol>
+<pre><code>
+    &lt;!-- 循环遍历对象身上的属性 --&gt;
+
+    &lt;div v-for=&quot;(val, key, i) in userInfo&quot;&gt;{{val}} --- {{key}} --- {{i}}&lt;/div&gt;
+</code></pre><ol start="3">
+<li>迭代数字</li>
+</ol>
+<pre><code>
+        &lt;p v-for=&quot;i in 10&quot;&gt;这是第 {{i}} 个P标签&lt;/p&gt;
+</code></pre><blockquote>
+<p>2.2.0+ 的版本里，<strong>当在组件中使用</strong> v-for 时，key 现在是必须的。</p>
+</blockquote>
+<p>当 Vue.js 用 v-for 正在更新已渲染过的元素列表时，它默认用 “<strong>就地复用</strong>” 策略。如果数据项的顺序被改变，Vue将<strong>不是移动 DOM 元素来匹配数据项的顺序</strong>， 而是<strong>简单复用此处每个元素</strong>，并且确保它在特定索引下显示已被渲染过的每个元素。</p>
+<p>为了给 Vue 一个提示，<strong>以便它能跟踪每个节点的身份，从而重用和重新排序现有元素</strong>，你需要为每项提供一个唯一 key 属性。</p>
+<h2 id="Vue指令之v-if和v-show"><a href="#Vue指令之v-if和v-show" class="headerlink" title="Vue指令之v-if和v-show"></a>Vue指令之<code>v-if</code>和<code>v-show</code></h2><blockquote>
+<p>一般来说，v-if 有更高的切换消耗而 v-show 有更高的初始渲染消耗。因此，如果需要频繁切换 v-show 较好，如果在运行时条件不大可能改变 v-if 较好。</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2020 nlzh</p>
