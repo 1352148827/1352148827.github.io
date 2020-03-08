@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>docker安装和使用 | nlzh</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="docker安装和使用 | nlzh">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="虞奥飞的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:site_name" content="nlzh">
+<meta property="og:description" content="虞奥飞的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-04T15:00:49.000Z">
+<meta property="article:modified_time" content="2020-03-04T15:00:49.189Z">
+<meta property="article:author" content="虞奥飞">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>虞奥飞</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/1352148827" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:1352148827@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1352148827&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(27)</small></div></li>
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(14)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="web">web<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+<input type="hidden" id="yelog_site_word_count" value="13.8k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="以 in: 开头进行全文搜索" />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="运维 "
+           href="/2020/03/07/Dockerfile/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Dockerfile">Dockerfile</span>
+            <span class="post-date" title="2020-03-07 19:19:59">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/VMware-%E5%85%8B%E9%9A%86%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="VMware-克隆镜像操作">VMware-克隆镜像操作</span>
+            <span class="post-date" title="2020-03-07 16:05:21">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/VMware%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="VMware安装和使用">VMware安装和使用</span>
+            <span class="post-date" title="2020-03-07 16:05:21">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/VMware%E5%AE%89%E8%A3%85/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="VMware安装">VMware安装</span>
+            <span class="post-date" title="2020-03-07 16:05:21">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker应用部署">docker应用部署</span>
+            <span class="post-date" title="2020-03-07 18:47:46">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/docker%E5%85%A5%E9%97%A8/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker入门">docker入门</span>
+            <span class="post-date" title="2020-03-07 15:08:42">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/SecureCRT%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SecureCRT使用">SecureCRT使用</span>
+            <span class="post-date" title="2020-03-07 16:15:38">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/07/docker%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker安装和使用">docker安装和使用</span>
+            <span class="post-date" title="2020-03-07 15:05:57">2020/03/07</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/08/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker私有仓库">docker私有仓库</span>
+            <span class="post-date" title="2020-03-08 11:35:51">2020/03/08</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/08/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux-常用命令">linux-常用命令</span>
+            <span class="post-date" title="2020-03-08 10:05:26">2020/03/08</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/06/hexo%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo使用">hexo使用</span>
+            <span class="post-date" title="2020-03-06 12:48:45">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-0-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-12-谷歌安装vue-devtool插件">vue基础-12-谷歌安装vue-devtool插件</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/06/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo搭建博客">hexo搭建博客</span>
+            <span class="post-date" title="2020-03-06 15:02:59">2020/03/06</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/06/hexo%E5%AE%89%E8%A3%85/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo安装">hexo安装</span>
+            <span class="post-date" title="2020-03-06 12:49:29">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-1-vue%E4%BB%8B%E7%BB%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-1-vue介绍">vue基础-1-vue介绍</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-10-vue%E5%8A%A8%E7%94%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-10-vue动画">vue基础-10-vue动画</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-12-%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85vue-devtool%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-12-谷歌安装vue-devtool插件">vue基础-12-谷歌安装vue-devtool插件</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-4-%E8%BF%87%E6%BB%A4%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-4-过滤器">vue基础-4-过滤器</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-2-vue%E7%9A%84%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-2-vue的指令">vue基础-2-vue的指令</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-3-vue%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%92%8Cif%E5%88%A4%E6%96%AD%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-3-vue的for循环和if判断指令">vue基础-3-vue的for循环和if判断指令</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-5-%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-5-按键修饰符">vue基础-5-按键修饰符</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/03/08/%E6%A1%88%E4%BE%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="案例">案例</span>
+            <span class="post-date" title="2020-03-08 10:27:19">2020/03/08</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-7-vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-7-vue的生命周期">vue基础-7-vue的生命周期</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-6-自定义指令">vue基础-6-自定义指令</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-11-vue%E8%B7%AF%E7%94%B1%E6%8F%92%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-10-vue动画">vue基础-10-vue动画</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-8-vue_resource%E5%AE%9E%E7%8E%B0%E5%90%91%E5%90%8E%E5%8F%B0%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-8-vue_resource实现向后台提交请求">vue基础-8-vue_resource实现向后台提交请求</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+        <a  class="web "
+           href="/2020/03/06/vue%E5%9F%BA%E7%A1%80-9-vue%E7%BB%84%E4%BB%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue基础-9-vue组件">vue基础-9-vue组件</span>
+            <span class="post-date" title="2020-03-06 12:59:02">2020/03/06</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-docker安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">docker安装和使用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="运维">运维</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color2">docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-08 13:24:33'>2020-03-07 15:05</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-docker安装"><span class="toc-text">1 docker安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-yum包更新最新"><span class="toc-text">1.1 yum包更新最新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-安装需要的软件包"><span class="toc-text">1.2 安装需要的软件包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-设置yum源为阿里云"><span class="toc-text">1.3 设置yum源为阿里云</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-安装docker"><span class="toc-text">1.4 安装docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-查看docker版本"><span class="toc-text">1.5 查看docker版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-设置ustc的镜像"><span class="toc-text">1.6 设置ustc的镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-docker操作"><span class="toc-text">2 docker操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-启动docker"><span class="toc-text">2.1 启动docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-停止docker"><span class="toc-text">2.2 停止docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-重启docker"><span class="toc-text">2.3 重启docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-查看docker状态"><span class="toc-text">2.4 查看docker状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-开机启动"><span class="toc-text">2.5 开机启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-查看docker概要信息"><span class="toc-text">2.6 查看docker概要信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-查看docker帮助文档"><span class="toc-text">2.7 查看docker帮助文档</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-docker镜像操作"><span class="toc-text">3 docker镜像操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-查看镜像"><span class="toc-text">3.1 查看镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-搜索镜像"><span class="toc-text">3.2 搜索镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-拉取镜像"><span class="toc-text">3.3 拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-删除镜像"><span class="toc-text">3.4 删除镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-容器相关命令"><span class="toc-text">4 容器相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-查看运行的容器"><span class="toc-text">4.1 查看运行的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-查看所有容器"><span class="toc-text">4.2 查看所有容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-查看最后一次运行的容器"><span class="toc-text">4.3 查看最后一次运行的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-查看停止的容器"><span class="toc-text">4.4 查看停止的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-创建与启动容器"><span class="toc-text">4.5 创建与启动容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-交互式方式创建容器"><span class="toc-text">4.5.1 交互式方式创建容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-守护式方式创建容器"><span class="toc-text">4.5.2 守护式方式创建容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-停止与启动容器"><span class="toc-text">4.6 停止与启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-删除容器"><span class="toc-text">4.7 删除容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-查看容器IP地址"><span class="toc-text">4.8 查看容器IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-文件拷贝容器"><span class="toc-text">4.9 文件拷贝容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10-目录挂载"><span class="toc-text">4.10 目录挂载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-迁移和备份"><span class="toc-text">5 迁移和备份</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-容器保存为镜像"><span class="toc-text">5.1 容器保存为镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-镜像备份"><span class="toc-text">5.2 镜像备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-镜像恢复与迁移"><span class="toc-text">5.3 镜像恢复与迁移</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-docker安装"><a href="#1-docker安装" class="headerlink" title="1 docker安装"></a>1 docker安装</h1><blockquote>
+<p>官方建议在 Ubuntu中安装</p>
+</blockquote>
+<blockquote>
+<p>安装CentOS7.x版本以上</p>
+</blockquote>
+<h2 id="1-1-yum包更新最新"><a href="#1-1-yum包更新最新" class="headerlink" title="1.1 yum包更新最新"></a>1.1 yum包更新最新</h2><pre><code>sudo yum update</code></pre><h2 id="1-2-安装需要的软件包"><a href="#1-2-安装需要的软件包" class="headerlink" title="1.2 安装需要的软件包"></a>1.2 安装需要的软件包</h2><p>yum-util 提供yum-config-manager功能，另外两个是 devicemapper驱动依赖的</p>
+<pre><code>sudo yum install -y yum-tuils device-mapper-persistent-data lvm2</code></pre><h2 id="1-3-设置yum源为阿里云"><a href="#1-3-设置yum源为阿里云" class="headerlink" title="1.3 设置yum源为阿里云"></a>1.3 设置yum源为阿里云</h2><pre><code>sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</code></pre><h2 id="1-4-安装docker"><a href="#1-4-安装docker" class="headerlink" title="1.4 安装docker"></a>1.4 安装docker</h2><pre><code>sudo yum install docker-ce</code></pre><h2 id="1-5-查看docker版本"><a href="#1-5-查看docker版本" class="headerlink" title="1.5 查看docker版本"></a>1.5 查看docker版本</h2><pre><code>docker -v</code></pre><h2 id="1-6-设置ustc的镜像"><a href="#1-6-设置ustc的镜像" class="headerlink" title="1.6 设置ustc的镜像"></a>1.6 设置ustc的镜像</h2><p>ustc是老牌的linux镜像服务提供者了，还在遥远的ubuntu 5.04版本的时候就在用。ustc 的docker镜像加速器速度很快。ustc docker mirror的优势之一就是不需要注册，是真正 的公共服务。</p>
+<p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/docker" target="_blank" rel="noopener">https://lug.ustc.edu.cn/wiki/mirrors/help/docker</a></p>
+<p>编辑文件</p>
+<pre><code>vi /etc/docker/daemon.json</code></pre><pre><code>{  
+    &quot;registry‐mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]  
+}</code></pre><blockquote>
+<p>注:如果有私服,则配置私服</p>
+</blockquote>
+<pre><code>{
+    &quot;registry-mirrors&quot;:[&quot;https://docker.mirrors.ustc.edu.cn&quot;],
+    &quot;insecure-registries&quot;:[&quot;192.168.0.201:5000&quot;]
+}</code></pre><h1 id="2-docker操作"><a href="#2-docker操作" class="headerlink" title="2 docker操作"></a>2 docker操作</h1><h2 id="2-1-启动docker"><a href="#2-1-启动docker" class="headerlink" title="2.1 启动docker"></a>2.1 启动docker</h2><pre><code class="sh">systemctl start docker</code></pre>
+<h2 id="2-2-停止docker"><a href="#2-2-停止docker" class="headerlink" title="2.2 停止docker"></a>2.2 停止docker</h2><pre><code>systemctl stop docker</code></pre><h2 id="2-3-重启docker"><a href="#2-3-重启docker" class="headerlink" title="2.3 重启docker"></a>2.3 重启docker</h2><pre><code>systemctl restart docker</code></pre><h2 id="2-4-查看docker状态"><a href="#2-4-查看docker状态" class="headerlink" title="2.4 查看docker状态"></a>2.4 查看docker状态</h2><pre><code>systemctl status docker</code></pre><h2 id="2-5-开机启动"><a href="#2-5-开机启动" class="headerlink" title="2.5 开机启动"></a>2.5 开机启动</h2><pre><code>systemctl enable docker</code></pre><h2 id="2-6-查看docker概要信息"><a href="#2-6-查看docker概要信息" class="headerlink" title="2.6 查看docker概要信息"></a>2.6 查看docker概要信息</h2><pre><code>docker info</code></pre><h2 id="2-7-查看docker帮助文档"><a href="#2-7-查看docker帮助文档" class="headerlink" title="2.7 查看docker帮助文档"></a>2.7 查看docker帮助文档</h2><pre><code>docker --help</code></pre><h1 id="3-docker镜像操作"><a href="#3-docker镜像操作" class="headerlink" title="3 docker镜像操作"></a>3 docker镜像操作</h1><h2 id="3-1-查看镜像"><a href="#3-1-查看镜像" class="headerlink" title="3.1 查看镜像"></a>3.1 查看镜像</h2><pre><code>docker images</code></pre><p>REPOSITORY：镜像名称<br>TAG：镜像标签(镜像版本)<br>IMAGE ID：镜像ID<br>CREATED：镜像的创建日期（不是获取该镜像的日期）<br>SIZE：镜像大小 这些镜像都是存储在Docker宿主机的/var/lib/docker目录下</p>
+<h2 id="3-2-搜索镜像"><a href="#3-2-搜索镜像" class="headerlink" title="3.2 搜索镜像"></a>3.2 搜索镜像</h2><p>从网络上查询需要的镜像</p>
+<pre><code>docker search 镜像名称</code></pre><p>NAME：仓库名称<br>DESCRIPTION：镜像描述<br>STARS：用户评价，反应一个镜像的受欢迎程度<br>OFFICIAL：是否官方<br>AUTOMATED：自动构建，表示该镜像由Docker Hub自动构建流程创建的 </p>
+<h2 id="3-3-拉取镜像"><a href="#3-3-拉取镜像" class="headerlink" title="3.3 拉取镜像"></a>3.3 拉取镜像</h2><p>从中央仓库中下载到本地</p>
+<pre><code>docker pull 镜像名称</code></pre><h2 id="3-4-删除镜像"><a href="#3-4-删除镜像" class="headerlink" title="3.4 删除镜像"></a>3.4 删除镜像</h2><p>按照镜像id删除镜像</p>
+<pre><code>docker rmi 镜像ID</code></pre><p>删除所有镜像</p>
+<pre><code>docker rmi `docker images -q`</code></pre><h1 id="4-容器相关命令"><a href="#4-容器相关命令" class="headerlink" title="4 容器相关命令"></a>4 容器相关命令</h1><h2 id="4-1-查看运行的容器"><a href="#4-1-查看运行的容器" class="headerlink" title="4.1 查看运行的容器"></a>4.1 查看运行的容器</h2><pre><code>docker ps</code></pre><h2 id="4-2-查看所有容器"><a href="#4-2-查看所有容器" class="headerlink" title="4.2 查看所有容器"></a>4.2 查看所有容器</h2><pre><code>docker ps -a</code></pre><h2 id="4-3-查看最后一次运行的容器"><a href="#4-3-查看最后一次运行的容器" class="headerlink" title="4.3 查看最后一次运行的容器"></a>4.3 查看最后一次运行的容器</h2><pre><code>docker ps -l</code></pre><h2 id="4-4-查看停止的容器"><a href="#4-4-查看停止的容器" class="headerlink" title="4.4 查看停止的容器"></a>4.4 查看停止的容器</h2><pre><code>docker ps -f status=exited</code></pre><h2 id="4-5-创建与启动容器"><a href="#4-5-创建与启动容器" class="headerlink" title="4.5 创建与启动容器"></a>4.5 创建与启动容器</h2><p>创建容器常用的参数说明：<br>创建容器命令：</p>
+<pre><code>docker run</code></pre><pre><code> -i：表示运行容器
+ -t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分 配一个伪终端。
+ --name: 为创建的容器命名。 
+ -v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），
+          可以使 用多个－v做多个目录或文件映射。注意：好做目录映射，在宿主机上做修改，然后共 享到容器上。
+ -d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会 自动登录容器，
+      如果只加-i -t两个参数，创建后就会自动进去容器）。
+ -p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个-p做 多个端口映射</code></pre><h3 id="4-5-1-交互式方式创建容器"><a href="#4-5-1-交互式方式创建容器" class="headerlink" title="4.5.1 交互式方式创建容器"></a>4.5.1 交互式方式创建容器</h3><blockquote>
+<p>/bin/bash 表示启动一个bash终端,允许用户交互</p>
+</blockquote>
+<pre><code>docker run -it --name=容器名称 镜像名称:标签 /bin/bash
+
+
+示例:
+docker run -it --name=my_centos centos:7 /bin/bash</code></pre><p>这时我们通过ps命令查看，发现可以看到启动的容器，状态为启动状态 </p>
+<blockquote>
+<p>退出当前容器</p>
+</blockquote>
+<pre><code>exit</code></pre><h3 id="4-5-2-守护式方式创建容器"><a href="#4-5-2-守护式方式创建容器" class="headerlink" title="4.5.2 守护式方式创建容器"></a>4.5.2 守护式方式创建容器</h3><blockquote>
+<p>-di  指的是 -i加-d</p>
+</blockquote>
+<pre><code>docker run -di --name=容器名称 镜像名称:标签
+
+示例:
+docker run -di  --name=my_centos2  centos:7</code></pre><p>登录守护式容器方式:</p>
+<blockquote>
+<p>-it 指 -i加上-t</p>
+</blockquote>
+<pre><code>docker exec -it 容器名称(或者容器id) /bin/bash</code></pre><h2 id="4-6-停止与启动容器"><a href="#4-6-停止与启动容器" class="headerlink" title="4.6 停止与启动容器"></a>4.6 停止与启动容器</h2><blockquote>
+<p>停止容器</p>
+</blockquote>
+<pre><code>docker stop 容器名称(或容器id)</code></pre><blockquote>
+<p>启动容器</p>
+</blockquote>
+<pre><code>docker start 容器名称(容器id)</code></pre><h2 id="4-7-删除容器"><a href="#4-7-删除容器" class="headerlink" title="4.7 删除容器"></a>4.7 删除容器</h2><pre><code>docker rm 容器名称(容器id)</code></pre><h2 id="4-8-查看容器IP地址"><a href="#4-8-查看容器IP地址" class="headerlink" title="4.8 查看容器IP地址"></a>4.8 查看容器IP地址</h2><pre><code>docker inspect 容器名称(容器id)</code></pre><blockquote>
+<p>直接输出IP地址</p>
+</blockquote>
+<pre><code>docker inspect --format=&#39;{{.NetworkSettings.IPAddress}}&#39; 容器名称(容器ID)</code></pre><h2 id="4-9-文件拷贝容器"><a href="#4-9-文件拷贝容器" class="headerlink" title="4.9 文件拷贝容器"></a>4.9 文件拷贝容器</h2><blockquote>
+<p> 将文件拷贝到容器内</p>
+</blockquote>
+<pre><code>docker cp 需要拷贝的文件或目录 容器名称:容器目录</code></pre><blockquote>
+<p>也可以将文件从容器内拷贝出来</p>
+</blockquote>
+<pre><code>docker cp 容器名称:容器目录 需要拷贝的文件或目录</code></pre><h2 id="4-10-目录挂载"><a href="#4-10-目录挂载" class="headerlink" title="4.10 目录挂载"></a>4.10 目录挂载</h2><p>目录挂载格式化</p>
+<pre><code> -v参数 宿主机目录:容器目录</code></pre><p>我们可以在创建容器的时候，将宿主机的目录与容器内的目录进行映射，这样我们就可 以通过修改宿主机某个目录的文件从而去影响容器。 创建容器 添加-v参数 后边为   宿主机目录:容器目录</p>
+<pre><code>docker run -di -v /usr/local/myhtml:/usr/local/myhtml --name=mycentos3 centos:7</code></pre><p>如果你共享的是多级的目录，可能会出现权限不足的提示。<br>这是因为CentOS7中的安全模块selinux把权限禁掉了，我们需要添加参数  -privileged=true  来解决挂载的目录没有权限的问题 </p>
+<h1 id="5-迁移和备份"><a href="#5-迁移和备份" class="headerlink" title="5 迁移和备份"></a>5 迁移和备份</h1><h2 id="5-1-容器保存为镜像"><a href="#5-1-容器保存为镜像" class="headerlink" title="5.1 容器保存为镜像"></a>5.1 容器保存为镜像</h2><p>我们可以通过以下命令将容器保存为镜像</p>
+<pre><code>docker commit mynginx mynginx_i</code></pre><h2 id="5-2-镜像备份"><a href="#5-2-镜像备份" class="headerlink" title="5.2 镜像备份"></a>5.2 镜像备份</h2><pre><code>docker save -o mynginx.tar mynginx_i</code></pre><h2 id="5-3-镜像恢复与迁移"><a href="#5-3-镜像恢复与迁移" class="headerlink" title="5.3 镜像恢复与迁移"></a>5.3 镜像恢复与迁移</h2><p>首先我们先删除掉mynginx_img镜像  然后执行此命令进行恢复</p>
+<pre><code>docker load -i mynginx.tar</code></pre><p>-i 输入的文件</p>
+<p>执行后再次查看镜像,可以看到镜像已经恢复</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 学无止境 </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2020 nlzh</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#docker',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
